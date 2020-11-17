@@ -1,15 +1,17 @@
 var buttons = document.querySelectorAll('.drum');
-for(let i=0;i<buttons.length;i++){
-    buttons[i].addEventListener('click', function (){
-        playSound(buttons[i].innerHTML);
-    });
+for (var i = 0; i < buttons.length; i++) {
+    (function (variable) {
+        variable.addEventListener('click', function () {
+            playSound(variable.innerHTML);
+        })
+    })(buttons[i]);
 }
-document.addEventListener('keypress', function (e){
+document.addEventListener('keypress', function (e) {
     playSound(e.key);
 })
 
 
-function playSound(key){
+function playSound(key) {
     switch (key) {
         case 'w':
             var tom1 = new Audio('sounds/tom-1.mp3');
