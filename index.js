@@ -3,11 +3,13 @@ for (var i = 0; i < buttons.length; i++) {
     (function (variable) {
         variable.addEventListener('click', function () {
             playSound(variable.innerHTML);
+            buttonAnimation(variable.innerHTML);
         })
     })(buttons[i]);
 }
 document.addEventListener('keypress', function (e) {
     playSound(e.key);
+    buttonAnimation(e.key);
 })
 
 
@@ -44,4 +46,13 @@ function playSound(key) {
         default:
             console.log(key);
     }
+}
+
+function buttonAnimation(key) {
+    var element = document.querySelector("." + key);
+    if (element == null) return;
+    element.classList.add("pressed");
+    setTimeout(() => {
+        element.classList.remove("pressed");
+    }, 100);
 }
